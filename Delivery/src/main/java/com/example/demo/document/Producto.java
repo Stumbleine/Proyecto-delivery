@@ -14,12 +14,12 @@ public class Producto {
 	private String tamaño;
 	private String tipo;
 	private Binary image;
-	private int precio;
+	private double precio;
 	
 
 	
 
-	public Producto(String nombre, String tamaño, String tipo, int precio) {
+	public Producto(String nombre, String tamaño, String tipo, double precio) {
 		super();
 		this.nombre = nombre;
 		this.tamaño = tamaño;
@@ -64,11 +64,11 @@ public class Producto {
 		this.image = image;
 	}
 
-	public int getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
 
-	public void setPrecio(int precio) {
+	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
 	public ObjectId getId() {

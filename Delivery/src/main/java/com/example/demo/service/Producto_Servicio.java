@@ -38,4 +38,19 @@ public class Producto_Servicio {
 		 lista=(ArrayList<Producto>) repo_produc.findAll();
 		 
 	}
+	public void actualizar_producto(String id,String nombre,String tamaño,String tipo,int precio, MultipartFile file) {
+		Optional<Producto> producto_en_la_base=repo_produc.findById(id);
+		producto_en_la_base.get().setNombre(nombre);
+		producto_en_la_base.get().setTamaño(tamaño);
+		producto_en_la_base.get().setTipo(tipo);
+		producto_en_la_base.get().setPrecio(precio);
+		try {
+			producto_en_la_base.get().setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    repo_produc.save(producto_en_la_base.get());
+		
+	}
 }
