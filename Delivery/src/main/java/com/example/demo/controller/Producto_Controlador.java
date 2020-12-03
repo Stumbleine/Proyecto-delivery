@@ -74,6 +74,7 @@ public class Producto_Controlador {
 			servicio_producto.actualizar_producto(id, nombre, tamaño, tipo, precio, image);
 			return new ResponseEntity<Producto>(HttpStatus.OK); 
 		}catch (Exception e) {
+			
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		

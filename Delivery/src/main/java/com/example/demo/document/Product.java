@@ -6,6 +6,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="Product")
 
+
+
 public class Product {
 	 @Id
 		private ObjectId id;
