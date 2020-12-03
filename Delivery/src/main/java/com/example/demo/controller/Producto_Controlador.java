@@ -70,6 +70,7 @@ public class Producto_Controlador {
 	@PostMapping("/api/productos/{id}")
 	public ResponseEntity<Producto> actualizar_producto(@PathVariable(value = "id")String id,@RequestParam("nombre") String nombre,@RequestParam("tamaño") String tamaño,@RequestParam("tipo") String tipo,@RequestParam("precio") int precio, @RequestParam("image") MultipartFile image, Model model) throws IOException {
 		try {
+			
 			servicio_producto.actualizar_producto(id, nombre, tamaño, tipo, precio, image);
 			return new ResponseEntity<Producto>(HttpStatus.OK); 
 		}catch (Exception e) {
