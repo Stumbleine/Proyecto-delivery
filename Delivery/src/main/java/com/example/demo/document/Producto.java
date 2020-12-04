@@ -11,7 +11,7 @@ public class Producto {
 	 @Id
 	private ObjectId id;
 	private String nombre;
-	private String tamaño;
+	private String tamano;
 	private String tipo;
 	private Binary image;
 	private double precio;
@@ -19,16 +19,16 @@ public class Producto {
 
 	
 
-	public Producto(String nombre, String tamaño, String tipo, double precio) {
+	public Producto(String nombre, String tamano, String tipo, double precio) {
 		super();
 		this.nombre = nombre;
-		this.tamaño = tamaño;
+		this.tamano = tamano;
 		this.tipo = tipo;
 		this.precio = precio;
 	}
 	@Override
 	public String toString() {
-		return "Producto [nombre=" + nombre + ", tamaño=" + tamaño + ", tipo=" + tipo + ", image=" + image + ", precio="
+		return "Producto [nombre=" + nombre + ", tamaño=" + tamano + ", tipo=" + tipo + ", image=" + image + ", precio="
 				+ precio + "]";
 	}
 
@@ -40,12 +40,12 @@ public class Producto {
 		this.nombre = nombre;
 	}
 
-	public String getTamaño() {
-		return tamaño;
+	public String getTamano() {
+		return tamano;
 	}
 
-	public void setTamaño(String tamaño) {
-		this.tamaño = tamaño;
+	public void setTamano(String tamano) {
+		this.tamano = tamano;
 	}
 
 	public String getTipo() {

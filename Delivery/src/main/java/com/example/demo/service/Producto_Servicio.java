@@ -15,14 +15,18 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.document.Producto;
 import com.example.demo.repository.Producto_repositorio;
 
+import ch.qos.logback.core.subst.Token.Type;
+
 
 @Service
 public class Producto_Servicio {
 	@Autowired
 	private Producto_repositorio repo_produc;
-	public String guardar_producto(String nombre,String tamaño,String tipo,int precio, MultipartFile file) throws IOException {
-        Producto producto = new Producto(nombre,tamaño,tipo,precio);
+	public String guardar_producto(String nombre,String tamano,String tipo,int precio, MultipartFile file) throws IOException {
+        Producto producto = new Producto(nombre,tamano,tipo,precio);
+        String extencion=extencion(file.getOriginalFilename());
         producto.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
+        System.out.println("-------------->"+extencion);
         producto = repo_produc.save(producto);
         return producto.getNombre();
     }
@@ -41,7 +45,7 @@ public class Producto_Servicio {
 	public void actualizar_producto(String id,String nombre,String tamaño,String tipo,int precio, MultipartFile file) {
 		Optional<Producto> producto_en_la_base=repo_produc.findById(id);
 		producto_en_la_base.get().setNombre(nombre);
-		producto_en_la_base.get().setTamaño(tamaño);
+		producto_en_la_base.get().setTamano(tamaño);
 		producto_en_la_base.get().setTipo(tipo);
 		producto_en_la_base.get().setPrecio(precio);
 		try {
@@ -52,5 +56,19 @@ public class Producto_Servicio {
 		}
 	    repo_produc.save(producto_en_la_base.get());
 		
+	}
+	
+	public String extencion(String cad) {
+		String res="";
+		for(int i=cad.length()-1;i>0;i--) {
+			if(cad.charAt(i)!='.') {
+				res=cad.charAt(i)+res;
+			}
+			else {
+				break;
+			}
+		}
+		
+		return res;
 	}
 }

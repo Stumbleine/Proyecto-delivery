@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.document.Producto;
 
+
 @Repository
 public interface Producto_repositorio extends MongoRepository<Producto,String> {
 

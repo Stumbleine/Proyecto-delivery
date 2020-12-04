@@ -12,7 +12,7 @@ public class Product {
 	 @Id
 		private ObjectId id;
 		private String nombre;
-		private String tamaño;
+		private String tamano;
 		private double precio;
 		public ObjectId getId() {
 			return id;
@@ -26,11 +26,11 @@ public class Product {
 		public void setNombre(String nombre) {
 			this.nombre = nombre;
 		}
-		public String getTamaño() {
-			return tamaño;
+		public String getTamano() {
+			return tamano;
 		}
-		public void setTamaño(String tamaño) {
-			this.tamaño = tamaño;
+		public void setTamano(String tamano) {
+			this.tamano = tamano;
 		}
 		public double getPrecio() {
 			return precio;
@@ -40,7 +40,7 @@ public class Product {
 		}
 		@Override
 		public String toString() {
-			return "Product [id=" + id + ", nombre=" + nombre + ", tamaño=" + tamaño + ", precio=" + precio + "]";
+			return "Product [id=" + id + ", nombre=" + nombre + ", tamano=" + tamano + ", precio=" + precio + "]";
 		}
 		
 		

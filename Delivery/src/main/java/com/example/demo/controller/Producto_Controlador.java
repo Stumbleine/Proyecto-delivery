@@ -33,9 +33,9 @@ public class Producto_Controlador {
 	Producto_repositorio repo;
 	@CrossOrigin
 	@PostMapping("/api/productos")
-	public ResponseEntity<Producto> guardar_producto(@RequestParam("nombre") String nombre,@RequestParam("tamaño") String tamaño,@RequestParam("tipo") String tipo,@RequestParam("precio") int precio, @RequestParam("image") MultipartFile image, Model model) throws IOException {
+	public ResponseEntity<Producto> guardar_producto(@RequestParam("nombre") String nombre,@RequestParam("tamano") String tamano,@RequestParam("tipo") String tipo,@RequestParam("precio") int precio, @RequestParam("image") MultipartFile image, Model model) throws IOException {
         try {
-		String ide = servicio_producto.guardar_producto(nombre, tamaño, tipo, precio, image);
+		String ide = servicio_producto.guardar_producto(nombre, tamano, tipo, precio, image);
         return new ResponseEntity<Producto>(HttpStatus.OK);
         }
         catch (Exception e) {
@@ -68,10 +68,10 @@ public class Producto_Controlador {
 	
 	@CrossOrigin
 	@PostMapping("/api/productos/{id}")
-	public ResponseEntity<Producto> actualizar_producto(@PathVariable(value = "id")String id,@RequestParam("nombre") String nombre,@RequestParam("tamaño") String tamaño,@RequestParam("tipo") String tipo,@RequestParam("precio") int precio, @RequestParam("image") MultipartFile image, Model model) throws IOException {
+	public ResponseEntity<Producto> actualizar_producto(@PathVariable(value = "id")String id,@RequestParam("nombre") String nombre,@RequestParam("tamano") String tamano,@RequestParam("tipo") String tipo,@RequestParam("precio") int precio, @RequestParam("image") MultipartFile image, Model model) throws IOException {
 		try {
 			
-			servicio_producto.actualizar_producto(id, nombre, tamaño, tipo, precio, image);
+			servicio_producto.actualizar_producto(id, nombre, tamano, tipo, precio, image);
 			return new ResponseEntity<Producto>(HttpStatus.OK); 
 		}catch (Exception e) {
 			
