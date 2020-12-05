@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.document.Product;
 import com.example.demo.repository.RespositoryProduct;
@@ -40,9 +41,8 @@ public class ControllerProduct {
 	}
 	@PermitAll
 	@PostMapping("/productos")
-	public ResponseEntity<Product> save(@RequestBody Product product){
-		
-		servicio.add(product);
+	public ResponseEntity<Product> save(@RequestParam("nombre") String nombre,@RequestParam("tamano")String tamano,@RequestParam("precio")double precio){
+		Product product=servicio.add(nombre,tamano,precio);
 		return ResponseEntity.ok(product);
 	}
 }

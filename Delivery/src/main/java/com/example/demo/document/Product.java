@@ -14,6 +14,16 @@ public class Product {
 		private String nombre;
 		private String tamano;
 		private double precio;
+		
+		
+		
+		
+		public Product(String nombre, String tamano, double precio) {
+			super();
+			this.nombre = nombre;
+			this.tamano = tamano;
+			this.precio = precio;
+		}
 		public ObjectId getId() {
 			return id;
 		}

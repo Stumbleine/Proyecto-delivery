@@ -20,4 +20,10 @@ public class Service_Product {
 	
 		
 	}
+
+	public Product add(String nombre, String tamano, double precio) {
+		Product product=new Product(nombre, tamano, precio);
+		repo.save(product);
+		return product;
+	}
 }	
