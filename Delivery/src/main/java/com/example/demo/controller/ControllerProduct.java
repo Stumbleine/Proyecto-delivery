@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +26,7 @@ public class ControllerProduct {
 	
 	@Autowired
 	private Service_Product servicio;
-	@CrossOrigin
+	@PermitAll
 	@GetMapping("/productos")
 	public ResponseEntity<List<Product>> lista_product(){
 		 List<Product> lista = new ArrayList<Product>();
@@ -36,7 +38,7 @@ public class ControllerProduct {
 		    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		  }
 	}
-	
+	@PermitAll
 	@PostMapping("/productos")
 	public ResponseEntity<Product> save(@RequestBody Product product){
 		

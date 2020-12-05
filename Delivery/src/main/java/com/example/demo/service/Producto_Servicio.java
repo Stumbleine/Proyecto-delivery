@@ -42,10 +42,10 @@ public class Producto_Servicio {
 		 lista=(ArrayList<Producto>) repo_produc.findAll();
 		 
 	}
-	public void actualizar_producto(String id,String nombre,String tamaño,String tipo,int precio, MultipartFile file) {
+	public void actualizar_producto(String id,String nombre,String tamano,String tipo,int precio, MultipartFile file) {
 		Optional<Producto> producto_en_la_base=repo_produc.findById(id);
 		producto_en_la_base.get().setNombre(nombre);
-		producto_en_la_base.get().setTamano(tamaño);
+		producto_en_la_base.get().setTamano(tamano);
 		producto_en_la_base.get().setTipo(tipo);
 		producto_en_la_base.get().setPrecio(precio);
 		try {
