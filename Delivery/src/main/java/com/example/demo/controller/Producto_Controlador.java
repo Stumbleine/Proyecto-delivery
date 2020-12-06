@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.annotation.security.PermitAll;
 
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -33,14 +36,15 @@ public class Producto_Controlador {
 	Producto_repositorio repo;
 	@CrossOrigin
 	@PostMapping("/api/productos")
-	public ResponseEntity<Producto> guardar_producto(@RequestParam("nombre") String nombre,@RequestParam("tamano") String tamano,@RequestParam("tipo") String tipo,@RequestParam("precio") int precio, @RequestParam("image") MultipartFile image, Model model) throws IOException {
-        try {
-		String ide = servicio_producto.guardar_producto(nombre, tamano, tipo, precio, image);
-        return new ResponseEntity<Producto>(HttpStatus.OK);
-        }
-        catch (Exception e) {
-        	return new ResponseEntity<Producto>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	public ResponseEntity<Producto> guardar_producto(@RequestParam("nombre") String nombre,@RequestParam("tamano") String tamano,@RequestParam("tipo") String tipo,@RequestParam("precio") double precio, @RequestParam("image") MultipartFile image, Model model) throws IOException {
+		try {
+				String ide = servicio_producto.guardar_producto(nombre, tamano, tipo, precio, image);
+				
+	        return new ResponseEntity<Producto>(HttpStatus.OK);
+	        }
+	        catch (Exception e) {
+	        	return new ResponseEntity<Producto>(HttpStatus.INTERNAL_SERVER_ERROR);
+			}
     } 
 	
 	@PermitAll
@@ -67,7 +71,7 @@ public class Producto_Controlador {
 	}
 	
 	@CrossOrigin
-	@PostMapping("/api/productos/{id}")
+	@PutMapping("/api/productos/{id}")
 	public ResponseEntity<Producto> actualizar_producto(@PathVariable(value = "id")String id,@RequestParam("nombre") String nombre,@RequestParam("tamano") String tamano,@RequestParam("tipo") String tipo,@RequestParam("precio") int precio, @RequestParam("image") MultipartFile image, Model model) throws IOException {
 		try {
 			

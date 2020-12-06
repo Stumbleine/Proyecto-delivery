@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,12 +23,12 @@ import ch.qos.logback.core.subst.Token.Type;
 public class Producto_Servicio {
 	@Autowired
 	private Producto_repositorio repo_produc;
-	public String guardar_producto(String nombre,String tamano,String tipo,int precio, MultipartFile file) throws IOException {
+	public String guardar_producto(String nombre,String tamano,String tipo,double precio, MultipartFile file) throws IOException {
         Producto producto = new Producto(nombre,tamano,tipo,precio);
         String extencion=extencion(file.getOriginalFilename());
         producto.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
-        System.out.println("-------------->"+extencion);
         producto = repo_produc.save(producto);
+        System.out.println("-------------->"+producto.getId().toString());
         return producto.getNombre();
     }
 	
@@ -41,7 +42,7 @@ public class Producto_Servicio {
 	public void lista_de_productos( List<Producto> lista){
 		 lista=(ArrayList<Producto>) repo_produc.findAll();
 		 
-	}
+	}	
 	public void actualizar_producto(String id,String nombre,String tamano,String tipo,int precio, MultipartFile file) {
 		Optional<Producto> producto_en_la_base=repo_produc.findById(id);
 		producto_en_la_base.get().setNombre(nombre);
