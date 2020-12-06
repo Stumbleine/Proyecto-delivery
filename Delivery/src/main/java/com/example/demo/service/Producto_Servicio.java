@@ -72,4 +72,8 @@ public class Producto_Servicio {
 		
 		return res;
 	}
+	public Producto buscar_producto(String id) {
+		Optional<Producto> producto=repo_produc.findById(id);
+		return producto.get();
+	}
 }

@@ -81,9 +81,20 @@ public class Producto_Controlador {
 			
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-		
-		
+	
+	}
+	@PermitAll
+	@GetMapping("/api/productos/{id}")
+	public ResponseEntity<Producto> buscar_producto(@PathVariable(value="id")String id){
+		try {
+			Producto producto=servicio_producto.buscar_producto(id);
+			return ResponseEntity.ok(producto);
+		}
+		catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		
 	}
+		
+		
 }
