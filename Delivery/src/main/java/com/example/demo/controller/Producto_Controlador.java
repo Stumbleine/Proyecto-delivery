@@ -9,6 +9,7 @@ import javax.annotation.security.PermitAll;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.AccessType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -46,7 +47,6 @@ public class Producto_Controlador {
 	        	return new ResponseEntity<Producto>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
     } 
-	
 	@PermitAll
 	@DeleteMapping("api/productos/{id}")
 	public ResponseEntity<Producto> eliminar_producto(@PathVariable(value = "id")String id) {
