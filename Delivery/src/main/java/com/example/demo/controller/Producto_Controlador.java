@@ -35,7 +35,7 @@ public class Producto_Controlador {
 	private Producto_Servicio servicio_producto;
 	@Autowired
 	Producto_repositorio repo;
-	@CrossOrigin
+	@PermitAll
 	@PostMapping("/api/productos")
 	public ResponseEntity<Producto> guardar_producto(@RequestParam("nombre") String nombre,@RequestParam("tamano") String tamano,@RequestParam("tipo") String tipo,@RequestParam("precio") double precio, @RequestParam("image") MultipartFile image, Model model) throws IOException {
 		try {
