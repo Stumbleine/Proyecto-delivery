@@ -37,9 +37,9 @@ public class Producto_Controlador {
 	Producto_repositorio repo;
 	@PermitAll
 	@PostMapping("/api/productos")
-	public ResponseEntity<Producto> guardar_producto(@RequestParam("nombre") String nombre,@RequestParam("tamano") String tamano,@RequestParam("tipo") String tipo,@RequestParam("precio") double precio, @RequestParam("image") MultipartFile image, Model model) throws IOException {
+	public ResponseEntity<Producto> guardar_producto(@RequestParam("nombre") String nombre,@RequestParam("tamano") String tamano,@RequestParam("tipo") String tipo,@RequestParam("precio") double precio, @RequestParam("image") MultipartFile image, Model model,@RequestParam("estado") boolean estado) throws IOException {
 		try {
-				String ide = servicio_producto.guardar_producto(nombre, tamano, tipo, precio, image);
+				String ide = servicio_producto.guardar_producto(nombre, tamano, tipo, precio, image,estado);
 				
 	        return new ResponseEntity<Producto>(HttpStatus.OK);
 	        }
@@ -95,6 +95,48 @@ public class Producto_Controlador {
 		}
 		
 	}
+	
+	//ruta para listar los productos que puede ver el usuario
+	
+	@PermitAll
+	@GetMapping("/productos")
+	public ResponseEntity<List<Producto>> lista_productos_por_estado(){
+		 List<Producto> lista = new ArrayList<Producto>();
+		try {
+		   //servicio_producto.lista_de_productos(lista);
+		  lista=repo.findByEstado(true);
+		   return ResponseEntity.ok(lista);
+		   } catch (Exception e) {
+		    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		  }
+	}
+	
+	//ruta para listar por el tipo de producto
+	@PermitAll
+	@GetMapping("/productos/{tipo}")
+	public ResponseEntity<List<Producto>> listar_productos_por_tipo(@PathVariable(value="tipo")String tipo){
+		 List<Producto> lista = new ArrayList<Producto>();
+		try {
+			lista=repo.findByTipo(tipo);
+			return ResponseEntity.ok(lista);
+		}
+		catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		
+	}
+	@CrossOrigin
+	@PostMapping("/api/productos/{id}/{estado}")
+	public ResponseEntity<Producto> actualizar_producto(@PathVariable(value = "id")String id,@PathVariable(value ="estado") boolean estado) throws IOException {
+		try {
+			
+			servicio_producto.actualizar_estado_producto(id,estado);
+			return new ResponseEntity<Producto>(HttpStatus.OK); 
+		}catch (Exception e) {
+			
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	
+	}
 		
 }

@@ -15,16 +15,17 @@ public class Producto {
 	private String tipo;
 	private Binary image;
 	private double precio;
-	
+	private boolean estado;
 
 	
 
-	public Producto(String nombre, String tamano, String tipo, double precio) {
+	public Producto(String nombre, String tamano, String tipo, double precio,boolean estado) {
 		super();
 		this.nombre = nombre;
 		this.tamano = tamano;
 		this.tipo = tipo;
 		this.precio = precio;
+		this.estado=estado;
 	}
 	@Override
 	public String toString() {
@@ -76,6 +77,12 @@ public class Producto {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public boolean isEstado() {
+		return estado;
+	}
+	public void setEstado(boolean estado) {
+		this.estado = estado;
 	}
 	
 

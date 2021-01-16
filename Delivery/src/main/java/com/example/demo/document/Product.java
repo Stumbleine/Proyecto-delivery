@@ -14,15 +14,17 @@ public class Product {
 		private String nombre;
 		private String tamano;
 		private double precio;
+		private boolean estado;
 		
 		
 		
 		
-		public Product(String nombre, String tamano, double precio) {
+		public Product(String nombre, String tamano, double precio,boolean estado) {
 			super();
 			this.nombre = nombre;
 			this.tamano = tamano;
 			this.precio = precio;
+			this.estado = estado;
 		}
 		public String getId() {
 			return id;
@@ -48,10 +50,13 @@ public class Product {
 		public void setPrecio(double precio) {
 			this.precio = precio;
 		}
-		@Override
-		public String toString() {
-			return "Product [id=" + id + ", nombre=" + nombre + ", tamano=" + tamano + ", precio=" + precio + "]";
+		public boolean isEstado() {
+			return estado;
 		}
+		public void setEstado(boolean estado) {
+			this.estado = estado;
+		}
+		
 		
 		
 }

@@ -23,8 +23,8 @@ import ch.qos.logback.core.subst.Token.Type;
 public class Producto_Servicio {
 	@Autowired
 	private Producto_repositorio repo_produc;
-	public String guardar_producto(String nombre,String tamano,String tipo,double precio, MultipartFile file) throws IOException {
-        Producto producto = new Producto(nombre,tamano,tipo,precio);
+	public String guardar_producto(String nombre,String tamano,String tipo,double precio, MultipartFile file,boolean estado) throws IOException {
+        Producto producto = new Producto(nombre,tamano,tipo,precio,estado);
         String extencion=extencion(file.getOriginalFilename());
         producto.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
         producto = repo_produc.save(producto);
@@ -74,6 +74,16 @@ public class Producto_Servicio {
 	}
 	public Producto buscar_producto(String id) {
 		Optional<Producto> producto=repo_produc.findById(id);
+		
 		return producto.get();
 	}
+
+	public void actualizar_estado_producto(String id, boolean estado) {
+		Optional<Producto> producto_en_la_base=repo_produc.findById(id);
+		producto_en_la_base.get().setEstado(estado);
+		repo_produc.save(producto_en_la_base.get());
+		
+	}
+	
+	
 }

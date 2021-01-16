@@ -21,8 +21,8 @@ public class Service_Product {
 		
 	}
 
-	public Product add(String nombre, String tamano, double precio) {
-		Product product=new Product(nombre, tamano, precio);
+	public Product add(String nombre, String tamano, double precio,boolean estado) {
+		Product product=new Product(nombre, tamano, precio,estado);
 		repo.save(product);
 		return product;
 	}

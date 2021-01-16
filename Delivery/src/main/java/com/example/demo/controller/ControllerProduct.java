@@ -28,7 +28,7 @@ public class ControllerProduct {
 	@Autowired
 	private Service_Product servicio;
 	@PermitAll
-	@GetMapping("/productos")
+	@GetMapping("/test/productos")
 	public ResponseEntity<List<Product>> lista_product(){
 		 List<Product> lista = new ArrayList<Product>();
 		try {
@@ -41,8 +41,8 @@ public class ControllerProduct {
 	}
 	@PermitAll
 	@PostMapping("/productos")
-	public ResponseEntity<Product> save(@RequestParam("nombre") String nombre,@RequestParam("tamano")String tamano,@RequestParam("precio")double precio){
-		Product product=servicio.add(nombre,tamano,precio);
+	public ResponseEntity<Product> save(@RequestParam("nombre") String nombre,@RequestParam("tamano")String tamano,@RequestParam("precio")double precio,@RequestParam("estado") boolean estado){
+		Product product=servicio.add(nombre,tamano,precio,estado);
 		return ResponseEntity.ok(product);
 	}
 }
